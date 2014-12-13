@@ -150,7 +150,7 @@ public class TDAGrafo {
         }
         return vertices.get(index);
     } 
-    Vertice RandomVertex(Vertice v){
+    ArrayList<Vertice> getAdjacentVertices(Vertice v){
         ArrayList<Vertice>relacionados=new ArrayList();
         if(!vertices.contains(v))
             return null;
@@ -159,6 +159,11 @@ public class TDAGrafo {
             if(relaciones[index][i]==1)
                 relacionados.add(vertices.get(i));
         }
+        return relacionados;
+        
+    }
+    Vertice RandomVertex(Vertice v){
+        ArrayList<Vertice>relacionados=getAdjacentVertices(v);
         Random rand = new Random();
         Vertice r= relacionados.get(rand.nextInt(relacionados.size()));
         return r;
