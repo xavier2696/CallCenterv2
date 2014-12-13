@@ -145,10 +145,21 @@ public class TDAGrafo {
                 numrelations=getOutdegree(vertices.get(i));
                 index=i;
             }
-                
+            
         }
         return vertices.get(index);
     } 
+    ArrayList<Vertice> RelatedVertices(Vertice v){
+        ArrayList<Vertice>relacionados=new ArrayList();
+        if(!vertices.contains(v))
+            return null;
+        int index=vertices.indexOf(v);
+        for(int i=0;i<vertices.size();i++){
+            if(relaciones[index][i]==1)
+                relacionados.add(vertices.get(i));
+        }
+        return relacionados;
+    }
     public void setRelations(){
         for(int i=0; i<vertices.size();i++){
             for(int j=0;j<vertices.size();j++){
