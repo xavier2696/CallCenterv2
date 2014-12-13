@@ -6,7 +6,9 @@
 
 package callcenterv2;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -80,8 +82,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void menu_cargarnombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cargarnombresActionPerformed
         // TODO add your handling code here:
+        
         File archivo = null;
-        Scanner sc;
+        
         try{
             JFileChooser jfc = new JFileChooser();
             FileFilter filtro = new FileNameExtensionFilter("Archivos","txt");
@@ -89,16 +92,15 @@ public class Principal extends javax.swing.JFrame {
             int op = jfc.showOpenDialog(this);
             if (op == JFileChooser.APPROVE_OPTION){
                 archivo = jfc.getSelectedFile();
-                sc = new Scanner(archivo);
-                
-                while(sc.hasNext()){
-                    String s1 = sc.nextLine();
-                    TDAGrafo.Vertice v1 = relaciones.new Vertice(s1);
+                FileReader fr = new FileReader(archivo);
+                BufferedReader br = new BufferedReader(fr);
+                String linea;
+                while ((linea = br.readLine()) != null){
+                    TDAGrafo.Vertice v1 = relaciones.new Vertice(linea);
                     relaciones.addVertex(v1);
                 }
                 menu_generarrelaciones.setEnabled(true);
             }
-            System.out.println(relaciones.getVertexCount());
         }catch(Exception e){
             e.printStackTrace();
         }
