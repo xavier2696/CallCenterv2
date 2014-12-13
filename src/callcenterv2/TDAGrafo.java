@@ -88,9 +88,7 @@ public class TDAGrafo {
         }
         int i = vertices.indexOf(v1);
         int j = vertices.indexOf(v2);
-        if (relaciones[i][j] > a) {
-            relaciones[i][j]=a;
-        }
+        relaciones[i][j]=a;
         return true;
 
     }
