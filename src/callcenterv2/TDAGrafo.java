@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class TDAGrafo {
     protected ArrayList<Vertice> vertices = new ArrayList();
-    public int[][] relaciones = new int[vertices.size()][vertices.size()];
+    private int[][] relaciones = new int[vertices.size()][vertices.size()];
 
     public class Vertice {
 
@@ -137,6 +137,18 @@ public class TDAGrafo {
                 index++;
         return n;
     }
+    Vertice MostRelated(){
+        int index=0;
+        int numrelations=0;
+        for(int i=0;i<vertices.size();i++){
+            if(getOutdegree(vertices.get(i))>numrelations){
+                numrelations=getOutdegree(vertices.get(i));
+                index=i;
+            }
+                
+        }
+        return vertices.get(index);
+    } 
     public void setRelations(){
         for(int i=0; i<vertices.size();i++){
             for(int j=0;j<vertices.size();j++){
