@@ -6,6 +6,7 @@
 package callcenterv2;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -140,12 +141,13 @@ public class TDAGrafo {
         return n;
     }
     public void setRelations(){
+        Random r = new Random();
         for(int i=0; i<vertices.size();i++){
             for(int j=0;j<vertices.size();j++){
                 if(i==j)
                     relaciones[i][j]=0;
                 else
-                    addEdge(vertices.get(i),vertices.get(j),(int)Math.floor(Math.random() * 9) % 2);//= (int)Math.floor(Math.random() * 9) % 2;
+                    addEdge(vertices.get(i),vertices.get(j),r.nextInt(2));//(int)Math.floor(Math.random() * 9) % 2);//= (int)Math.floor(Math.random() * 9) % 2;
             }
             
         }
