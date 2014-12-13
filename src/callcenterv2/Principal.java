@@ -217,6 +217,7 @@ public class Principal extends javax.swing.JFrame {
                 }
                 menu_generarrelaciones.setEnabled(true);
             }
+            siguiente  = relaciones.MostRelated();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -262,6 +263,7 @@ public class Principal extends javax.swing.JFrame {
         
         label_nombre.setText(siguiente.getData());
         ta_pregunta2.setText(ta_pregunta.getText());
+        ventana_pregunta.pack();
         ventana_pregunta.setVisible(true);
         ventana_pregunta.setModal(true);
     }//GEN-LAST:event_boton_encuestaActionPerformed
@@ -283,7 +285,7 @@ public class Principal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -327,5 +329,5 @@ public class Principal extends javax.swing.JFrame {
 TDAGrafo relaciones = new TDAGrafo();
 int contadorsi = 0;
 int contadorno = 0;
-TDAGrafo.Vertice siguiente = relaciones.MostRelated();
+TDAGrafo.Vertice siguiente;
 }
