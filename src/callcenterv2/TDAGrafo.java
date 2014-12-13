@@ -17,7 +17,7 @@ public class TDAGrafo {
     private int[][] relaciones = new int[vertices.size()][vertices.size()];
 
     public class Vertice {
-
+        public boolean visitado = false;
         protected String data;
 
         public Vertice(String data) {

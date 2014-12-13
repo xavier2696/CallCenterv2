@@ -218,6 +218,7 @@ public class Principal extends javax.swing.JFrame {
                 menu_generarrelaciones.setEnabled(true);
             }
             siguiente  = relaciones.MostRelated();
+            siguiente.visitado = true;
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -244,18 +245,56 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         contadorsi++;
         ventana_pregunta.setVisible(false);
+        TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
-        label_nombre.setText(siguiente.getData());
-        ventana_pregunta.setVisible(true);
+        TDAGrafo.Vertice[] adyacentes = relaciones.getAdjacentVertices(anterior);
+        boolean has_adjacent = true;
+        while(siguiente.visitado && has_adjacent){
+            has_adjacent = false;            
+            for(int i = 0 ; i<adyacentes.length; i++){
+                if(!adyacentes[i].visitado){
+                    has_adjacent = true;
+                }                
+            }
+            siguiente = relaciones.RandomVertex(anterior);
+        }
+        if(has_adjacent){
+            siguiente.visitado = true;
+            label_nombre.setText(siguiente.getData());
+            ventana_pregunta.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
+                    + "Si: "+contadorsi+"\n"
+                    + "No: "+contadorno);
+        }
     }//GEN-LAST:event_boton_siActionPerformed
 
     private void boton_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_noActionPerformed
         // TODO add your handling code here:
         contadorno++;
         ventana_pregunta.setVisible(false);
+        TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
-        label_nombre.setText(siguiente.getData());
-        ventana_pregunta.setVisible(true);
+        TDAGrafo.Vertice[] adyacentes = relaciones.getAdjacenteVertices(anterior);
+        boolean has_adjacent = true;
+        while(siguiente.visitado && has_adjacent){
+            has_adjacent = false;            
+            for(int i = 0 ; i<adyacentes.length; i++){
+                if(!adyacentes[i].visitado){
+                    has_adjacent = true;
+                }                
+            }
+            siguiente = relaciones.RandomVertex(anterior);
+        }
+        if(has_adjacent){
+            siguiente.visitado = true;
+            label_nombre.setText(siguiente.getData());
+            ventana_pregunta.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
+                    + "Si: "+contadorsi+"\n"
+                    + "No: "+contadorno);
+        }
     }//GEN-LAST:event_boton_noActionPerformed
 
     private void boton_encuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_encuestaActionPerformed
