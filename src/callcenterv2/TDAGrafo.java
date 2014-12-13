@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class TDAGrafo {
     protected ArrayList<Vertice> vertices = new ArrayList();
-    public int[][] relaciones = new int[vertices.size()][vertices.size()];
+    private int[][] relaciones = new int[vertices.size()][vertices.size()];
 
     public class Vertice {
 
@@ -137,6 +137,31 @@ public class TDAGrafo {
             if(relaciones[index][i]==1)
                 index++;
         return n;
+    }
+    Vertice MostRelated(){
+        int index=0;
+        int numrelations=0;
+        for(int i=0;i<vertices.size();i++){
+            if(getOutdegree(vertices.get(i))>numrelations){
+                numrelations=getOutdegree(vertices.get(i));
+                index=i;
+            }
+            
+        }
+        return vertices.get(index);
+    } 
+    Vertice RandomVertex(Vertice v){
+        ArrayList<Vertice>relacionados=new ArrayList();
+        if(!vertices.contains(v))
+            return null;
+        int index=vertices.indexOf(v);
+        for(int i=0;i<vertices.size();i++){
+            if(relaciones[index][i]==1)
+                relacionados.add(vertices.get(i));
+        }
+        Random rand = new Random();
+        Vertice r= relacionados.get(rand.nextInt(relacionados.size()));
+        return r;
     }
     public void setRelations(){
         Random r = new Random();
