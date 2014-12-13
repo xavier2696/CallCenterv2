@@ -9,7 +9,7 @@ package callcenterv2;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Scanner;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
@@ -217,8 +217,7 @@ public class Principal extends javax.swing.JFrame {
                 }
                 menu_generarrelaciones.setEnabled(true);
             }
-            siguiente  = relaciones.MostRelated();
-            siguiente.visitado = true;
+            
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -227,7 +226,9 @@ public class Principal extends javax.swing.JFrame {
     private void menu_generarrelacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_generarrelacionesActionPerformed
         // TODO add your handling code here:
         relaciones.setRelations();
-        
+        siguiente  = relaciones.MostRelated();
+            siguiente.visitado = true;
+            //System.out.println(siguiente.data);
         /*for(int i = 0; i<relaciones.getVertexCount(); i++){
             for(int j = 0; j<relaciones.getVertexCount(); j++){
                 System.out.print("["+relaciones.relaciones[i][j]+"]");
@@ -247,12 +248,12 @@ public class Principal extends javax.swing.JFrame {
         ventana_pregunta.setVisible(false);
         TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
-        TDAGrafo.Vertice[] adyacentes = relaciones.getAdjacentVertices(anterior);
+        ArrayList<TDAGrafo.Vertice> adyacentes = relaciones.getAdjacentVertices(anterior);
         boolean has_adjacent = true;
         while(siguiente.visitado && has_adjacent){
             has_adjacent = false;            
-            for(int i = 0 ; i<adyacentes.length; i++){
-                if(!adyacentes[i].visitado){
+            for(int i = 0 ; i<adyacentes.size(); i++){
+                if(!adyacentes.get(i).visitado){
                     has_adjacent = true;
                 }                
             }
@@ -277,12 +278,12 @@ public class Principal extends javax.swing.JFrame {
         ventana_pregunta.setVisible(false);
         TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
-        TDAGrafo.Vertice[] adyacentes = relaciones.getAdjacenteVertices(anterior);
+        ArrayList<TDAGrafo.Vertice> adyacentes = relaciones.getAdjacentVertices(anterior);
         boolean has_adjacent = true;
         while(siguiente.visitado && has_adjacent){
             has_adjacent = false;            
-            for(int i = 0 ; i<adyacentes.length; i++){
-                if(!adyacentes[i].visitado){
+            for(int i = 0 ; i<adyacentes.size(); i++){
+                if(!adyacentes.get(i).visitado){
                     has_adjacent = true;
                 }                
             }
