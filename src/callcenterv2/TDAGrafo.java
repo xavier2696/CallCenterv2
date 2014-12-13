@@ -73,6 +73,7 @@ public class TDAGrafo {
         int i = vertices.indexOf(v1);
         int j = vertices.indexOf(v2);
         relaciones[i][j] = 1;
+        relaciones[j][i]=1;
         return true;
     }
 
@@ -89,6 +90,7 @@ public class TDAGrafo {
         int i = vertices.indexOf(v1);
         int j = vertices.indexOf(v2);
         relaciones[i][j]=a;
+        relaciones[j][i]=a;
         return true;
 
     }
