@@ -37,12 +37,108 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ventana_pregunta = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ta_pregunta2 = new javax.swing.JTextArea();
+        boton_si = new javax.swing.JButton();
+        boton_no = new javax.swing.JButton();
+        boton_detener = new javax.swing.JButton();
+        label_nombre = new javax.swing.JLabel();
+        boton_encuesta = new javax.swing.JButton();
+        label_pregunta = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ta_pregunta = new javax.swing.JTextArea();
         barra_menu = new javax.swing.JMenuBar();
         menu_archivo = new javax.swing.JMenu();
         menu_cargarnombres = new javax.swing.JMenuItem();
         menu_generarrelaciones = new javax.swing.JMenuItem();
 
+        ta_pregunta2.setEditable(false);
+        ta_pregunta2.setColumns(20);
+        ta_pregunta2.setRows(5);
+        jScrollPane2.setViewportView(ta_pregunta2);
+
+        boton_si.setText("Si");
+        boton_si.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_siActionPerformed(evt);
+            }
+        });
+
+        boton_no.setText("No");
+        boton_no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_noActionPerformed(evt);
+            }
+        });
+
+        boton_detener.setText("Detener");
+        boton_detener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_detenerActionPerformed(evt);
+            }
+        });
+
+        label_nombre.setText("jLabel1");
+
+        javax.swing.GroupLayout ventana_preguntaLayout = new javax.swing.GroupLayout(ventana_pregunta.getContentPane());
+        ventana_pregunta.getContentPane().setLayout(ventana_preguntaLayout);
+        ventana_preguntaLayout.setHorizontalGroup(
+            ventana_preguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventana_preguntaLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(boton_si)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(boton_no)
+                .addGap(79, 79, 79))
+            .addGroup(ventana_preguntaLayout.createSequentialGroup()
+                .addGroup(ventana_preguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ventana_preguntaLayout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(boton_detener))
+                    .addGroup(ventana_preguntaLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ventana_preguntaLayout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(label_nombre)))
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+        ventana_preguntaLayout.setVerticalGroup(
+            ventana_preguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventana_preguntaLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(label_nombre)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(ventana_preguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boton_si)
+                    .addComponent(boton_no))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(boton_detener)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        boton_encuesta.setText("Iniciar Encuesta");
+        boton_encuesta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_encuestaMouseClicked(evt);
+            }
+        });
+        boton_encuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_encuestaActionPerformed(evt);
+            }
+        });
+
+        label_pregunta.setText("Pregunta:");
+
+        ta_pregunta.setColumns(20);
+        ta_pregunta.setRows(5);
+        jScrollPane1.setViewportView(ta_pregunta);
 
         menu_archivo.setText("Archivo");
 
@@ -70,11 +166,31 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(label_pregunta)
+                        .addGap(83, 83, 83)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(boton_encuesta)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(label_pregunta)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(boton_encuesta)
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -110,13 +226,51 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         relaciones.setRelations();
         
-        for(int i = 0; i<relaciones.getVertexCount(); i++){
+        /*for(int i = 0; i<relaciones.getVertexCount(); i++){
             for(int j = 0; j<relaciones.getVertexCount(); j++){
-                System.out.println("["+relaciones.relaciones[i][j]+"]");
+                System.out.print("["+relaciones.relaciones[i][j]+"]");
             }
-        }
+            System.out.println("");
+        }*/
         JOptionPane.showMessageDialog(this, "Se han generado las relaciones aleatorias");
     }//GEN-LAST:event_menu_generarrelacionesActionPerformed
+
+    private void boton_encuestaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_encuestaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boton_encuestaMouseClicked
+
+    private void boton_siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_siActionPerformed
+        // TODO add your handling code here:
+        contadorsi++;
+        ventana_pregunta.setVisible(false);
+        siguiente = relaciones.RandomVertex(siguiente);
+        label_nombre.setText(siguiente.getData());
+        ventana_pregunta.setVisible(true);
+    }//GEN-LAST:event_boton_siActionPerformed
+
+    private void boton_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_noActionPerformed
+        // TODO add your handling code here:
+        contadorno++;
+        ventana_pregunta.setVisible(false);
+        siguiente = relaciones.RandomVertex(siguiente);
+        label_nombre.setText(siguiente.getData());
+        ventana_pregunta.setVisible(true);
+    }//GEN-LAST:event_boton_noActionPerformed
+
+    private void boton_encuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_encuestaActionPerformed
+        // TODO add your handling code here:
+        
+        label_nombre.setText(siguiente.getData());
+        ta_pregunta2.setText(ta_pregunta.getText());
+        ventana_pregunta.setVisible(true);
+        ventana_pregunta.setModal(true);
+    }//GEN-LAST:event_boton_encuestaActionPerformed
+
+    private void boton_detenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_detenerActionPerformed
+        // TODO add your handling code here:
+        ventana_pregunta.setModal(false);
+        ventana_pregunta.setVisible(false);
+    }//GEN-LAST:event_boton_detenerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,9 +309,23 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barra_menu;
+    private javax.swing.JButton boton_detener;
+    private javax.swing.JButton boton_encuesta;
+    private javax.swing.JButton boton_no;
+    private javax.swing.JButton boton_si;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel label_nombre;
+    private javax.swing.JLabel label_pregunta;
     private javax.swing.JMenu menu_archivo;
     private javax.swing.JMenuItem menu_cargarnombres;
     private javax.swing.JMenuItem menu_generarrelaciones;
+    private javax.swing.JTextArea ta_pregunta;
+    private javax.swing.JTextArea ta_pregunta2;
+    private javax.swing.JDialog ventana_pregunta;
     // End of variables declaration//GEN-END:variables
 TDAGrafo relaciones = new TDAGrafo();
+int contadorsi = 0;
+int contadorno = 0;
+TDAGrafo.Vertice siguiente = relaciones.MostRelated();
 }
