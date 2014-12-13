@@ -266,6 +266,8 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
                     + "Si: "+contadorsi+"\n"
                     + "No: "+contadorno);
+            contadorsi = 0;
+            contadorno = 0;
         }
     }//GEN-LAST:event_boton_siActionPerformed
 
@@ -294,6 +296,8 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
                     + "Si: "+contadorsi+"\n"
                     + "No: "+contadorno);
+            contadorsi = 0;
+            contadorno = 0;
         }
     }//GEN-LAST:event_boton_noActionPerformed
 
