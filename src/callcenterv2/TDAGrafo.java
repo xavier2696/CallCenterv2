@@ -14,10 +14,10 @@ import java.util.Random;
  */
 public class TDAGrafo {
     protected ArrayList<Vertice> vertices = new ArrayList();
-    private int[][] relaciones = new int[vertices.size()][vertices.size()];
+    public int[][] relaciones = new int[vertices.size()][vertices.size()];
 
     public class Vertice {
-
+        public boolean visitado = false;
         protected String data;
 
         public Vertice(String data) {
@@ -141,7 +141,7 @@ public class TDAGrafo {
         return n;
     }
     Vertice MostRelated(){
-        int index=0;
+        /*int index=0;
         int numrelations=0;
         for(int i=0;i<vertices.size();i++){
             if(getOutdegree(vertices.get(i))>numrelations){
@@ -149,7 +149,23 @@ public class TDAGrafo {
                 index=i;
             }
             
+        */
+        int[] numero_relaciones = new int[vertices.size()];
+        for(int i = 0; i<vertices.size(); i++){
+            int cont = 0;
+            for(int j = 0; j<vertices.size(); j++){
+                if(relaciones[i][j]==1)
+                    cont++;
+            }
+            numero_relaciones[i] = cont;
         }
+        int index = 0;
+        for(int i = 0; i<numero_relaciones.length; i++){
+            //System.out.print("["+numero_relaciones[i]+"]");
+            if(numero_relaciones[i]>numero_relaciones[index])
+                index = i;
+        }
+        
         return vertices.get(index);
     } 
     ArrayList<Vertice> getAdjacentVertices(Vertice v){

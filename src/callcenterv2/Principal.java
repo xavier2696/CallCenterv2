@@ -9,7 +9,7 @@ package callcenterv2;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Scanner;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
@@ -217,7 +217,7 @@ public class Principal extends javax.swing.JFrame {
                 }
                 menu_generarrelaciones.setEnabled(true);
             }
-            siguiente  = relaciones.MostRelated();
+            
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -226,7 +226,9 @@ public class Principal extends javax.swing.JFrame {
     private void menu_generarrelacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_generarrelacionesActionPerformed
         // TODO add your handling code here:
         relaciones.setRelations();
-        
+        siguiente  = relaciones.MostRelated();
+            siguiente.visitado = true;
+            //System.out.println(siguiente.data);
         /*for(int i = 0; i<relaciones.getVertexCount(); i++){
             for(int j = 0; j<relaciones.getVertexCount(); j++){
                 System.out.print("["+relaciones.relaciones[i][j]+"]");
@@ -244,18 +246,60 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         contadorsi++;
         ventana_pregunta.setVisible(false);
+        TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
-        label_nombre.setText(siguiente.getData());
-        ventana_pregunta.setVisible(true);
+        ArrayList<TDAGrafo.Vertice> adyacentes = relaciones.getAdjacentVertices(anterior);
+        boolean has_adjacent = true;
+        while(siguiente.visitado && has_adjacent){
+            has_adjacent = false;            
+            for(int i = 0 ; i<adyacentes.size(); i++){
+                if(!adyacentes.get(i).visitado){
+                    has_adjacent = true;
+                }                
+            }
+            siguiente = relaciones.RandomVertex(anterior);
+        }
+        if(has_adjacent){
+            siguiente.visitado = true;
+            label_nombre.setText(siguiente.getData());
+            ventana_pregunta.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
+                    + "Si: "+contadorsi+"\n"
+                    + "No: "+contadorno);
+            contadorsi = 0;
+            contadorno = 0;
+        }
     }//GEN-LAST:event_boton_siActionPerformed
 
     private void boton_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_noActionPerformed
         // TODO add your handling code here:
         contadorno++;
         ventana_pregunta.setVisible(false);
+        TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
-        label_nombre.setText(siguiente.getData());
-        ventana_pregunta.setVisible(true);
+        ArrayList<TDAGrafo.Vertice> adyacentes = relaciones.getAdjacentVertices(anterior);
+        boolean has_adjacent = true;
+        while(siguiente.visitado && has_adjacent){
+            has_adjacent = false;            
+            for(int i = 0 ; i<adyacentes.size(); i++){
+                if(!adyacentes.get(i).visitado){
+                    has_adjacent = true;
+                }                
+            }
+            siguiente = relaciones.RandomVertex(anterior);
+        }
+        if(has_adjacent){
+            siguiente.visitado = true;
+            label_nombre.setText(siguiente.getData());
+            ventana_pregunta.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
+                    + "Si: "+contadorsi+"\n"
+                    + "No: "+contadorno);
+            contadorsi = 0;
+            contadorno = 0;
+        }
     }//GEN-LAST:event_boton_noActionPerformed
 
     private void boton_encuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_encuestaActionPerformed
