@@ -154,7 +154,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="menu_generarrelaciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Generar Relaciones"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_generarrelacionesActionPerformed"/>
@@ -268,7 +267,6 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Iniciar Encuesta"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="boton_encuestaMouseClicked"/>

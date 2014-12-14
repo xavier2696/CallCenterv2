@@ -126,7 +126,6 @@ public class Principal extends javax.swing.JFrame {
         boton_encuesta.setBackground(new java.awt.Color(0, 153, 153));
         boton_encuesta.setForeground(new java.awt.Color(255, 255, 255));
         boton_encuesta.setText("Iniciar Encuesta");
-        boton_encuesta.setEnabled(false);
         boton_encuesta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 boton_encuestaMouseClicked(evt);
@@ -161,7 +160,6 @@ public class Principal extends javax.swing.JFrame {
         menu_archivo.add(menu_cargarnombres);
 
         menu_generarrelaciones.setText("Generar Relaciones");
-        menu_generarrelaciones.setEnabled(false);
         menu_generarrelaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_generarrelacionesActionPerformed(evt);
@@ -420,7 +418,24 @@ public class Principal extends javax.swing.JFrame {
                 String linea;
                 while ((linea = br.readLine()) != null){
                     String[] personas = linea.split("-");
+                    TDAGrafo.Vertice v1 = relaciones.new Vertice(personas[0]);
+                    TDAGrafo.Vertice v2 = relaciones.new Vertice(personas[1]);
+                    relaciones.addVertex(v1);
+                    relaciones.addVertex(v2);
+                    if (!relaciones.addVertex(v1) || !relaciones.addVertex(v2)) {
+                    for (int i = 0; i < relaciones.vertices.size(); i++) {
+                        if (v1.equals(relaciones.vertices.get(i))) {
+                            v1 = relaciones.vertices.get(i);
+                        }
+                        if (v2.equals(relaciones.vertices.get(i))) {
+                            v2 = relaciones.vertices.get(i);
+                        }
+                    }
+
                 }
+                relaciones.addEdge(v1, v2);
+                }
+                
                 JOptionPane.showMessageDialog(this, "Se ha cargado el archivo");
                 
                 for (int i = 0; i < relaciones.getVertexCount(); i++) {
@@ -434,6 +449,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ocurrio un error");
             e.printStackTrace();
         }
+        siguiente  = relaciones.MostRelated();
     }//GEN-LAST:event_menu_cargarrelacionesActionPerformed
 
     /**
