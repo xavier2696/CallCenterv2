@@ -184,5 +184,7 @@ public class TDAGrafo {
         }
      }
 
-                
+      public ArrayList<Vertice> getVertices(){
+          return vertices;
+      }          
 }

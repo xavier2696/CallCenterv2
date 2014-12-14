@@ -7,8 +7,10 @@
 package callcenterv2;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -57,10 +59,10 @@ public class Principal extends javax.swing.JFrame {
         menu_archivo = new javax.swing.JMenu();
         menu_cargarnombres = new javax.swing.JMenuItem();
         menu_generarrelaciones = new javax.swing.JMenuItem();
+        menu_guardarrelaciones = new javax.swing.JMenuItem();
+        menu_cargarrelaciones = new javax.swing.JMenuItem();
 
-        ventana_pregunta.setMaximumSize(new java.awt.Dimension(480, 320));
         ventana_pregunta.setMinimumSize(new java.awt.Dimension(480, 320));
-        ventana_pregunta.setPreferredSize(new java.awt.Dimension(480, 320));
         ventana_pregunta.getContentPane().setLayout(null);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/callcenterv2/call_center.gif"))); // NOI18N
@@ -124,6 +126,7 @@ public class Principal extends javax.swing.JFrame {
         boton_encuesta.setBackground(new java.awt.Color(0, 153, 153));
         boton_encuesta.setForeground(new java.awt.Color(255, 255, 255));
         boton_encuesta.setText("Iniciar Encuesta");
+        boton_encuesta.setEnabled(false);
         boton_encuesta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 boton_encuestaMouseClicked(evt);
@@ -158,12 +161,30 @@ public class Principal extends javax.swing.JFrame {
         menu_archivo.add(menu_cargarnombres);
 
         menu_generarrelaciones.setText("Generar Relaciones");
+        menu_generarrelaciones.setEnabled(false);
         menu_generarrelaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_generarrelacionesActionPerformed(evt);
             }
         });
         menu_archivo.add(menu_generarrelaciones);
+
+        menu_guardarrelaciones.setText("Guardar Relaciones");
+        menu_guardarrelaciones.setEnabled(false);
+        menu_guardarrelaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_guardarrelacionesActionPerformed(evt);
+            }
+        });
+        menu_archivo.add(menu_guardarrelaciones);
+
+        menu_cargarrelaciones.setText("Cargar Relaciones");
+        menu_cargarrelaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_cargarrelacionesActionPerformed(evt);
+            }
+        });
+        menu_archivo.add(menu_cargarrelaciones);
 
         barra_menu.add(menu_archivo);
 
@@ -220,7 +241,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         File archivo = null;
-        
+        relaciones = new TDAGrafo();
         try{
             JFileChooser jfc = new JFileChooser();
             FileFilter filtro = new FileNameExtensionFilter("Archivos","txt");
@@ -236,6 +257,8 @@ public class Principal extends javax.swing.JFrame {
                     relaciones.addVertex(v1);
                 }
                 menu_generarrelaciones.setEnabled(true);
+                boton_encuesta.setEnabled(true);
+                menu_cargarrelaciones.setEnabled(true);
             }
             
         }catch(Exception e){
@@ -249,12 +272,13 @@ public class Principal extends javax.swing.JFrame {
         siguiente  = relaciones.MostRelated();
             siguiente.visitado = true;
             //System.out.println(siguiente.data);
-        /*for(int i = 0; i<relaciones.getVertexCount(); i++){
+        for(int i = 0; i<relaciones.getVertexCount(); i++){
             for(int j = 0; j<relaciones.getVertexCount(); j++){
                 System.out.print("["+relaciones.relaciones[i][j]+"]");
             }
             System.out.println("");
-        }*/
+        }
+        menu_guardarrelaciones.setEnabled(true);
         JOptionPane.showMessageDialog(this, "Se han generado las relaciones aleatorias");
     }//GEN-LAST:event_menu_generarrelacionesActionPerformed
 
@@ -342,6 +366,76 @@ public class Principal extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_boton_detenerActionPerformed
 
+    private void menu_guardarrelacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_guardarrelacionesActionPerformed
+        // TODO add your handling code here:
+        ArrayList<TDAGrafo.Vertice> vertices = relaciones.getVertices();
+        FileWriter salida1 = null;
+        BufferedWriter bw = null;
+        File archivo = null;
+        try {
+            JFileChooser jfc = new JFileChooser();
+            FileFilter filtro = new FileNameExtensionFilter("Archivos","txt");
+            jfc.setFileFilter(filtro);
+            int op = jfc.showSaveDialog(this);
+            if (op == JFileChooser.APPROVE_OPTION){                
+                archivo = new File(jfc.getSelectedFile().getPath() + ".txt");
+                salida1 = new FileWriter(archivo, true);
+                bw = new BufferedWriter(salida1);                        
+                for (int i = 0; i < vertices.size(); i++) {
+                    ArrayList<TDAGrafo.Vertice> adyacents = relaciones.getAdjacentVertices(vertices.get(i));
+                    for (int j = 0; j < adyacents.size(); j++) {
+                        String relacion = vertices.get(i).getData() + "-" + adyacents.get(j).getData();
+                        bw.write(relacion);
+                        bw.newLine();
+                        
+                    }
+                }
+                bw.flush();
+                JOptionPane.showMessageDialog(this, "Se ha creado el archivo");
+            }
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error");
+            try {
+                bw.close();
+                salida1.close();                
+            } catch (Exception e1) {
+            }
+        }
+    }//GEN-LAST:event_menu_guardarrelacionesActionPerformed
+
+    private void menu_cargarrelacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cargarrelacionesActionPerformed
+        // TODO add your handling code here:
+        File archivo = null;
+        relaciones = new TDAGrafo();
+        try{
+            JFileChooser jfc = new JFileChooser();
+            FileFilter filtro = new FileNameExtensionFilter("Archivos","txt");
+            jfc.setFileFilter(filtro);
+            int op = jfc.showOpenDialog(this);
+            if (op == JFileChooser.APPROVE_OPTION){
+                archivo = jfc.getSelectedFile();
+                FileReader fr = new FileReader(archivo);
+                BufferedReader br = new BufferedReader(fr);
+                String linea;
+                while ((linea = br.readLine()) != null){
+                    String[] personas = linea.split("-");
+                }
+                JOptionPane.showMessageDialog(this, "Se ha cargado el archivo");
+                
+                for (int i = 0; i < relaciones.getVertexCount(); i++) {
+                    for (int j = 0; j < relaciones.getVertexCount(); j++) {
+                        System.out.print("[" + relaciones.relaciones[i][j] + "]");
+                    }
+                    System.out.println("");
+                }
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ocurrio un error");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_menu_cargarrelacionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -394,7 +488,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel label_pregunta;
     private javax.swing.JMenu menu_archivo;
     private javax.swing.JMenuItem menu_cargarnombres;
+    private javax.swing.JMenuItem menu_cargarrelaciones;
     private javax.swing.JMenuItem menu_generarrelaciones;
+    private javax.swing.JMenuItem menu_guardarrelaciones;
     private javax.swing.JTextArea ta_pregunta;
     private javax.swing.JTextArea ta_pregunta2;
     private javax.swing.JDialog ventana_pregunta;
