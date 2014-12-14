@@ -137,11 +137,11 @@ public class TDAGrafo {
         int index= vertices.indexOf(v);
         for(int i=0;i<vertices.size();i++)
             if(relaciones[index][i]==1)
-                index++;
+                n++;
         return n;
     }
     Vertice MostRelated(){
-        /*int index=0;
+        int index=0;
         int numrelations=0;
         for(int i=0;i<vertices.size();i++){
             if(getOutdegree(vertices.get(i))>numrelations){
@@ -149,21 +149,6 @@ public class TDAGrafo {
                 index=i;
             }
             
-        */
-        int[] numero_relaciones = new int[vertices.size()];
-        for(int i = 0; i<vertices.size(); i++){
-            int cont = 0;
-            for(int j = 0; j<vertices.size(); j++){
-                if(relaciones[i][j]==1)
-                    cont++;
-            }
-            numero_relaciones[i] = cont;
-        }
-        int index = 0;
-        for(int i = 0; i<numero_relaciones.length; i++){
-            //System.out.print("["+numero_relaciones[i]+"]");
-            if(numero_relaciones[i]>numero_relaciones[index])
-                index = i;
         }
         
         return vertices.get(index);

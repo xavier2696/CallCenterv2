@@ -38,90 +38,91 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         ventana_pregunta = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ta_pregunta2 = new javax.swing.JTextArea();
+        label_nombre = new javax.swing.JLabel();
+        boton_detener = new javax.swing.JButton();
         boton_si = new javax.swing.JButton();
         boton_no = new javax.swing.JButton();
-        boton_detener = new javax.swing.JButton();
-        label_nombre = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
         boton_encuesta = new javax.swing.JButton();
         label_pregunta = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_pregunta = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         barra_menu = new javax.swing.JMenuBar();
         menu_archivo = new javax.swing.JMenu();
         menu_cargarnombres = new javax.swing.JMenuItem();
         menu_generarrelaciones = new javax.swing.JMenuItem();
+
+        ventana_pregunta.setMaximumSize(new java.awt.Dimension(480, 320));
+        ventana_pregunta.setMinimumSize(new java.awt.Dimension(480, 320));
+        ventana_pregunta.setPreferredSize(new java.awt.Dimension(480, 320));
+        ventana_pregunta.getContentPane().setLayout(null);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/callcenterv2/call_center.gif"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        ventana_pregunta.getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 40, 106, 129);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
 
         ta_pregunta2.setEditable(false);
         ta_pregunta2.setColumns(20);
         ta_pregunta2.setRows(5);
         jScrollPane2.setViewportView(ta_pregunta2);
 
-        boton_si.setText("Si");
-        boton_si.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_siActionPerformed(evt);
-            }
-        });
+        jPanel2.add(jScrollPane2);
+        jScrollPane2.setBounds(170, 90, 166, 96);
 
-        boton_no.setText("No");
-        boton_no.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_noActionPerformed(evt);
-            }
-        });
+        label_nombre.setText("jLabel1");
+        jPanel2.add(label_nombre);
+        label_nombre.setBounds(170, 40, 200, 20);
 
+        boton_detener.setBackground(new java.awt.Color(0, 153, 153));
+        boton_detener.setForeground(new java.awt.Color(255, 255, 255));
         boton_detener.setText("Detener");
         boton_detener.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_detenerActionPerformed(evt);
             }
         });
+        jPanel2.add(boton_detener);
+        boton_detener.setBounds(220, 240, 100, 23);
 
-        label_nombre.setText("jLabel1");
+        boton_si.setBackground(new java.awt.Color(0, 153, 153));
+        boton_si.setForeground(new java.awt.Color(255, 255, 255));
+        boton_si.setText("Si");
+        boton_si.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_siActionPerformed(evt);
+            }
+        });
+        jPanel2.add(boton_si);
+        boton_si.setBounds(120, 200, 70, 23);
 
-        javax.swing.GroupLayout ventana_preguntaLayout = new javax.swing.GroupLayout(ventana_pregunta.getContentPane());
-        ventana_pregunta.getContentPane().setLayout(ventana_preguntaLayout);
-        ventana_preguntaLayout.setHorizontalGroup(
-            ventana_preguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ventana_preguntaLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(boton_si)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(boton_no)
-                .addGap(79, 79, 79))
-            .addGroup(ventana_preguntaLayout.createSequentialGroup()
-                .addGroup(ventana_preguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ventana_preguntaLayout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(boton_detener))
-                    .addGroup(ventana_preguntaLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ventana_preguntaLayout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(label_nombre)))
-                .addContainerGap(118, Short.MAX_VALUE))
-        );
-        ventana_preguntaLayout.setVerticalGroup(
-            ventana_preguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ventana_preguntaLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(label_nombre)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(ventana_preguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boton_si)
-                    .addComponent(boton_no))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(boton_detener)
-                .addContainerGap())
-        );
+        boton_no.setBackground(new java.awt.Color(0, 153, 153));
+        boton_no.setForeground(new java.awt.Color(255, 255, 255));
+        boton_no.setText("No");
+        boton_no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_noActionPerformed(evt);
+            }
+        });
+        jPanel2.add(boton_no);
+        boton_no.setBounds(340, 200, 70, 23);
+
+        ventana_pregunta.getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 480, 320);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        boton_encuesta.setBackground(new java.awt.Color(0, 153, 153));
+        boton_encuesta.setForeground(new java.awt.Color(255, 255, 255));
         boton_encuesta.setText("Iniciar Encuesta");
         boton_encuesta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -139,6 +140,12 @@ public class Principal extends javax.swing.JFrame {
         ta_pregunta.setColumns(20);
         ta_pregunta.setRows(5);
         jScrollPane1.setViewportView(ta_pregunta);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/callcenterv2/call.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
 
         menu_archivo.setText("Archivo");
 
@@ -169,28 +176,40 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(label_pregunta)
-                        .addGap(83, 83, 83)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(boton_encuesta)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(57, 57, 57)
+                        .addComponent(label_pregunta)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(94, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(boton_encuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addComponent(label_pregunta))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(label_pregunta)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(boton_encuesta)
-                .addGap(37, 37, 37))
+                        .addGap(57, 57, 57)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
+                        .addComponent(boton_encuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -245,7 +264,7 @@ public class Principal extends javax.swing.JFrame {
     private void boton_siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_siActionPerformed
         // TODO add your handling code here:
         contadorsi++;
-        ventana_pregunta.setVisible(false);
+        //ventana_pregunta.setVisible(false);
         TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
         ArrayList<TDAGrafo.Vertice> adyacentes = relaciones.getAdjacentVertices(anterior);
@@ -262,7 +281,7 @@ public class Principal extends javax.swing.JFrame {
         if(has_adjacent){
             siguiente.visitado = true;
             label_nombre.setText(siguiente.getData());
-            ventana_pregunta.setVisible(true);
+           //ventana_pregunta.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
                     + "Si: "+contadorsi+"\n"
@@ -314,6 +333,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void boton_detenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_detenerActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
+                    + "Si: "+contadorsi+"\n"
+                    + "No: "+contadorno);
+        contadorsi=0;
+        contadorno=0;
         ventana_pregunta.setModal(false);
         ventana_pregunta.setVisible(false);
     }//GEN-LAST:event_boton_detenerActionPerformed
@@ -359,6 +383,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton boton_encuesta;
     private javax.swing.JButton boton_no;
     private javax.swing.JButton boton_si;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label_nombre;
