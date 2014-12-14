@@ -213,6 +213,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menu_cargarnombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cargarnombresActionPerformed
@@ -264,7 +265,6 @@ public class Principal extends javax.swing.JFrame {
     private void boton_siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_siActionPerformed
         // TODO add your handling code here:
         contadorsi++;
-        //ventana_pregunta.setVisible(false);
         TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
         ArrayList<TDAGrafo.Vertice> adyacentes = relaciones.getAdjacentVertices(anterior);
@@ -281,7 +281,6 @@ public class Principal extends javax.swing.JFrame {
         if(has_adjacent){
             siguiente.visitado = true;
             label_nombre.setText(siguiente.getData());
-           //ventana_pregunta.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
                     + "Si: "+contadorsi+"\n"
@@ -294,7 +293,6 @@ public class Principal extends javax.swing.JFrame {
     private void boton_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_noActionPerformed
         // TODO add your handling code here:
         contadorno++;
-        ventana_pregunta.setVisible(false);
         TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
         ArrayList<TDAGrafo.Vertice> adyacentes = relaciones.getAdjacentVertices(anterior);
@@ -311,7 +309,6 @@ public class Principal extends javax.swing.JFrame {
         if(has_adjacent){
             siguiente.visitado = true;
             label_nombre.setText(siguiente.getData());
-            ventana_pregunta.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
                     + "Si: "+contadorsi+"\n"
@@ -326,7 +323,9 @@ public class Principal extends javax.swing.JFrame {
         
         label_nombre.setText(siguiente.getData());
         ta_pregunta2.setText(ta_pregunta.getText());
+        this.setVisible(false);
         ventana_pregunta.pack();
+        ventana_pregunta.setLocation(this.getLocation());
         ventana_pregunta.setVisible(true);
         ventana_pregunta.setModal(true);
     }//GEN-LAST:event_boton_encuestaActionPerformed
@@ -340,6 +339,7 @@ public class Principal extends javax.swing.JFrame {
         contadorno=0;
         ventana_pregunta.setModal(false);
         ventana_pregunta.setVisible(false);
+        this.setVisible(true);
     }//GEN-LAST:event_boton_detenerActionPerformed
 
     /**
