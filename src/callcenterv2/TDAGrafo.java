@@ -88,9 +88,9 @@ public class TDAGrafo {
             return false;
         }
         int i = vertices.indexOf(v1);
-        System.out.println(i);
+        //System.out.println(i);
         int j = vertices.indexOf(v2);
-        System.out.println(j);
+        //System.out.println(j);
         relaciones[i][j]=a;
         relaciones[j][i]=a;
         return true;
@@ -184,12 +184,12 @@ public class TDAGrafo {
             }
             
         }
-        for(int i=0;i<vertices.size();i++){
+        /*for(int i=0;i<vertices.size();i++){
             for(int j=0;j<vertices.size();j++){
                 if(relaciones[i][j]==1)
                     System.out.println(vertices.get(i).data+"-"+vertices.get(j).data);
             }
-        }
+        }*/
      }
 
       public ArrayList<Vertice> getVertices(){

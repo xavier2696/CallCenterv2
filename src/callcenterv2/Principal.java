@@ -126,6 +126,7 @@ public class Principal extends javax.swing.JFrame {
         boton_encuesta.setBackground(new java.awt.Color(0, 153, 153));
         boton_encuesta.setForeground(new java.awt.Color(255, 255, 255));
         boton_encuesta.setText("Iniciar Encuesta");
+        boton_encuesta.setEnabled(false);
         boton_encuesta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 boton_encuestaMouseClicked(evt);
@@ -160,6 +161,7 @@ public class Principal extends javax.swing.JFrame {
         menu_archivo.add(menu_cargarnombres);
 
         menu_generarrelaciones.setText("Generar Relaciones");
+        menu_generarrelaciones.setEnabled(false);
         menu_generarrelaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_generarrelacionesActionPerformed(evt);
@@ -255,8 +257,7 @@ public class Principal extends javax.swing.JFrame {
                     relaciones.addVertex(v1);
                 }
                 menu_generarrelaciones.setEnabled(true);
-                boton_encuesta.setEnabled(true);
-                menu_cargarrelaciones.setEnabled(true);
+                
             }
             
         }catch(Exception e){
@@ -270,14 +271,15 @@ public class Principal extends javax.swing.JFrame {
         siguiente  = relaciones.MostRelated();
             siguiente.visitado = true;
             //System.out.println(siguiente.data);
-        for(int i = 0; i<relaciones.getVertexCount(); i++){
+        /*for(int i = 0; i<relaciones.getVertexCount(); i++){
             for(int j = 0; j<relaciones.getVertexCount(); j++){
                 System.out.print("["+relaciones.relaciones[i][j]+"]");
             }
             System.out.println("");
-        }
+        }*/
         menu_guardarrelaciones.setEnabled(true);
         JOptionPane.showMessageDialog(this, "Se han generado las relaciones aleatorias");
+        boton_encuesta.setEnabled(true);
     }//GEN-LAST:event_menu_generarrelacionesActionPerformed
 
     private void boton_encuestaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_encuestaMouseClicked
@@ -437,19 +439,22 @@ public class Principal extends javax.swing.JFrame {
                 }
                 
                 JOptionPane.showMessageDialog(this, "Se ha cargado el archivo");
-                
-                for (int i = 0; i < relaciones.getVertexCount(); i++) {
+                System.out.println("");
+                /*for (int i = 0; i < relaciones.getVertexCount(); i++) {
                     for (int j = 0; j < relaciones.getVertexCount(); j++) {
                         System.out.print("[" + relaciones.relaciones[i][j] + "]");
                     }
                     System.out.println("");
-                }
+                }*/
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ocurrio un error");
             e.printStackTrace();
         }
         siguiente  = relaciones.MostRelated();
+        menu_generarrelaciones.setEnabled(true);
+        menu_guardarrelaciones.setEnabled(true);
+        boton_encuesta.setEnabled(true);
     }//GEN-LAST:event_menu_cargarrelacionesActionPerformed
 
     /**
