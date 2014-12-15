@@ -257,11 +257,12 @@ public class Principal extends javax.swing.JFrame {
                     relaciones.addVertex(v1);
                 }
                 menu_generarrelaciones.setEnabled(true);
-                
+                JOptionPane.showMessageDialog(this, "Se cargaron los nombres exitosamente");
             }
             
         }catch(Exception e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ocurrio un error");
         }
     }//GEN-LAST:event_menu_cargarnombresActionPerformed
 
@@ -292,6 +293,10 @@ public class Principal extends javax.swing.JFrame {
         TDAGrafo.Vertice anterior = siguiente;
         siguiente = relaciones.RandomVertex(siguiente);
         ArrayList<TDAGrafo.Vertice> adyacentes = relaciones.getAdjacentVertices(anterior);
+        //System.out.println(anterior.data);
+        //for(int i = 0; i<adyacentes.size(); i++){
+          //  System.out.println(adyacentes.get(i).data);
+        //}
         boolean has_adjacent = true;
         while(siguiente.visitado && has_adjacent){
             has_adjacent = false;            
@@ -308,9 +313,13 @@ public class Principal extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
                     + "Si: "+contadorsi+"\n"
-                    + "No: "+contadorno);
+                    + "No: " + contadorno);
             contadorsi = 0;
             contadorno = 0;
+            siguiente = relaciones.MostRelated();
+            ventana_pregunta.setModal(false);
+            ventana_pregunta.setVisible(false);
+            this.setVisible(true);
         }
     }//GEN-LAST:event_boton_siActionPerformed
 
@@ -336,9 +345,13 @@ public class Principal extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Se realizo la encuesta correctamente \n"
                     + "Si: "+contadorsi+"\n"
-                    + "No: "+contadorno);
+                    + "No: " + contadorno);
             contadorsi = 0;
             contadorno = 0;
+            siguiente = relaciones.MostRelated();
+            ventana_pregunta.setModal(false);
+            ventana_pregunta.setVisible(false);
+            this.setVisible(true);
         }
     }//GEN-LAST:event_boton_noActionPerformed
 
@@ -348,6 +361,10 @@ public class Principal extends javax.swing.JFrame {
         label_nombre.setText(siguiente.getData());
         ta_pregunta2.setText(ta_pregunta.getText());
         this.setVisible(false);
+        for(int i = 0; i<relaciones.getVertices().size(); i++){
+            relaciones.getVertices().get(i).visitado = false;
+        }
+        siguiente.visitado = true;
         ventana_pregunta.pack();
         ventana_pregunta.setLocation(this.getLocation());
         ventana_pregunta.setVisible(true);
@@ -361,6 +378,7 @@ public class Principal extends javax.swing.JFrame {
                     + "No: "+contadorno);
         contadorsi=0;
         contadorno=0;
+        siguiente  = relaciones.MostRelated();
         ventana_pregunta.setModal(false);
         ventana_pregunta.setVisible(false);
         this.setVisible(true);
@@ -439,19 +457,22 @@ public class Principal extends javax.swing.JFrame {
                 }
                 
                 JOptionPane.showMessageDialog(this, "Se ha cargado el archivo");
-                System.out.println("");
-                /*for (int i = 0; i < relaciones.getVertexCount(); i++) {
+                /*System.out.println("");
+                for (int i = 0; i < relaciones.getVertexCount(); i++) {
+                    System.out.println(relaciones.getVertices().get(i));
                     for (int j = 0; j < relaciones.getVertexCount(); j++) {
                         System.out.print("[" + relaciones.relaciones[i][j] + "]");
                     }
                     System.out.println("");
-                }*/
+                }
+                System.out.println("");*/
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Ocurrio un error");
             e.printStackTrace();
         }
         siguiente  = relaciones.MostRelated();
+        siguiente.visitado =true;
         menu_generarrelaciones.setEnabled(true);
         menu_guardarrelaciones.setEnabled(true);
         boton_encuesta.setEnabled(true);
